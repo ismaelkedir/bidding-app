@@ -18,7 +18,6 @@
     <div class="landing-page">
         <div class="page-content">
             <div id="img">
-                <img class="img" src="logo.png" alt='logo img'>
                 <span id="logo-text"><span id='firstname'>Bidding- </span>Application</span>
             </div>
             <div class="logo" id="toggle">
@@ -30,22 +29,62 @@
                     <li class="btns"><a href="#"> ABOUT US</a> </li>
                     <li class="btns "><a href="#">CONTACT US</a> </li>
                     <div id="link-btn">
-                        <button id="show-login" class="btns">Become a Seller</button>
+                        <button id="show-login" class="btns" onclick="newAuction()">Become a Seller</button>
+                        <script>
+                            function newAuction() {
+                                window.location.href = '/seller/create-auction';
+                            }
+                        </script>
                     </div>
                 </ul>
             </div>
         </div>
         <div class="container">
-            <div class="green-box" style='height: 100px'>
-                <p>You Bid, your rules</p>
+            <div class="green-box p-4">
+                <h1 style="text-align: left">You Bid, your rules</h1>
+                <div id="link-btn">
+                    <button id="show-login" class="btns" style="background-color: #1ba965; border: 1px solid #000"
+                        onclick="newAuction()">Become
+                        a
+                        Seller</button>
+                    <script>
+                        function newAuction() {
+                            window.location.href = '/seller/create-auction';
+                        }
+                    </script>
+                </div>
             </div>
-            <div class="search-container">
-                <form class="search-form">
-                    <input type="text" class="search-input" placeholder="Search for auction">
-                    <button class="search-button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
+            <div class="row">
+                <div class="search-container">
+                    <form class="search-form">
+                        <input type="text" class="search-input form-control" placeholder="Search for auction">
+                        <button class="search-button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <h1>Sponsored Listings</h1>
+                <div class="cards-container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card" style="border: 3px solid #1ba965">
+                                <div class="card-body">
+                                    <img src="{{ $auctions[0]->image }}" alt="{{ $auctions[0]->title }}">
+                                    <h5 class="card-title">Name: {{ $auctions[0]->title }}</h5>
+                                    <p class="card-text" style="color: #000">{{ $auctions[0]->description }}</p>
+                                    <p class="card-text text-black-50">Starting at:
+                                        {{ $auctions[0]->starting_price }}ETB
+                                    </p>
+                                    <a href="{{ route('auctions.show', $auctions[0]->id) }}" class="btn btn-primary"
+                                        style="background-color: #1ba965">View
+                                        Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <h1>Best Sellings</h1>
@@ -79,9 +118,12 @@
                             <div class="card-body">
                                 <img src="{{ $auction->image }}" alt="{{ $auction->title }}">
                                 <h5 class="card-title">Name: {{ $auction->title }}</h5>
-                                <p class="card-text">{{ $auction->description }}</p>
-                                <p class="card-text">Starting at: {{ $auction->starting_price }}</p>
-                                <a href="{{ route('auctions.show', $auction->id) }}" class="btn btn-primary">View
+                                <p class="card-text" style="color: #000">{{ $auction->description }}</p>
+                                <p class="card-text text-black-50">Starting at:
+                                    {{ $auction->starting_price }}ETB
+                                </p>
+                                <a href="{{ route('auctions.show', $auction->id) }}" class="btn btn-primary"
+                                    style="background-color: #1ba965">View
                                     Details</a>
                             </div>
                         </div>

@@ -33,7 +33,12 @@
                     <li class="btns"><a href="#"> ABOUT US</a> </li>
                     <li class="btns "><a href="#">CONTACT US</a> </li>
                     <div id="link-btn">
-                        <button id="show-login" class="btns">Become a Seller</button>
+                        <button id="show-login" class="btns" onclick="newAuction()">Become a Seller</button>
+                        <script>
+                            function newAuction() {
+                                window.location.href = '/seller/create-auction';
+                            }
+                        </script>
                     </div>
                 </ul>
             </div>
@@ -60,7 +65,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <input type="submit" class="mt-3 form-control"
+                            <input type="submit" id="submit" class="mt-3 form-control"
                                 style="border-radius: 10px; background-color:#1ba965; padding: 10px; border-color: transparent;">
                         </div>
                     </div>
@@ -92,11 +97,15 @@
                                 </div>
                             @endforeach
                         @else
-                            <div class="col-6">
-                                Ismael
-                            </div>
-                            <div class="col-6 text-right">
-                                8100ETB
+                            <div class="bid-record">
+                                <div class="row">
+                                    <div class="col-6">
+                                        Ismael
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        8100ETB
+                                    </div>
+                                </div>
                             </div>
                         @endif
                     </div>
@@ -107,6 +116,7 @@
                     const textInput = document.querySelector('input[type="text"]');
                     const plusButton = document.querySelector('.plus');
                     const minusButton = document.querySelector('.minus');
+                    const submit = document.querySelector('#submit');
 
                     plusButton.addEventListener('click', function() {
                         // Parse the current value, remove non-numeric characters, and convert to a number
@@ -129,7 +139,17 @@
                             }
                         }
                     });
+
+                    submit.addEventListener('click', function() {
+                        alert('Your bid has been recorded')
+                    })
                 });
+            </script>
+            <script>
+                // Redirect to buyer/won-auction page after 20 seconds
+                setTimeout(function() {
+                    window.location.href = "/buyer/won-auction";
+                }, 10000);
             </script>
         </div>
     </div>

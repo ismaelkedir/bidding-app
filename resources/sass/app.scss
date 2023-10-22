@@ -465,10 +465,9 @@ body {
 }
 
 .search-input {
-    border: none;
     border-radius: 10px;
     padding: 20px;
-    background-color: #1ba965;
+    border: 1px solid #1ba965;
 }
 
 .search-button {
@@ -480,7 +479,6 @@ body {
 /* Green Box */
 .green-box {
     background-color: #1ba965;
-    text-align: center;
     margin: 20px;
     margin-right: 10;
     border-radius: 10px;
@@ -503,7 +501,6 @@ h1 {
     justify-content: space-around;
 }
 .card {
-    width: 200px;
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;

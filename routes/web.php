@@ -35,7 +35,7 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::group(['prefix' => 'buyer'], function () {
     Route::get('/dashboard', [BuyerController::class, 'dashboard']);
     Route::get('/auctions', [BuyerController::class, 'auctions']);
-    Route::get('/won-auctions', [BuyerController::class, 'wonAuctions']);
+    Route::get('/won-auction', [BuyerController::class, 'wonAuction']);
 });
 
 // Seller Routes

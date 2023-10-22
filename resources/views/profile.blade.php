@@ -23,7 +23,6 @@
             <div class="circle-shadow shadow3"></div>
 
             <div id="img">
-                <img class="img" src="logo.png" alt='logo img'>
                 <span id="logo-text"><span id='firstname'>Bidding- </span>Application</span>
             </div>
             <div id="links">
