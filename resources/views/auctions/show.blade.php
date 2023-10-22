@@ -17,13 +17,11 @@
 <body class="antialiased">
     <div class="landing-page">
         <div class="page-content">
-
             <div class="circle-shadow shadow1"></div>
             <div class="circle-shadow shadow2"></div>
             <div class="circle-shadow shadow3"></div>
 
             <div id="img">
-                <img class="img" src="logo.png" alt='logo img'>
                 <span id="logo-text"><span id='firstname'>Bidding- </span>Application</span>
             </div>
             <div class="logo" id="toggle">
@@ -35,43 +33,106 @@
                     <li class="btns"><a href="#"> ABOUT US</a> </li>
                     <li class="btns "><a href="#">CONTACT US</a> </li>
                     <div id="link-btn">
-                        <button id="show-login" class="btns">Log In</button>
-                        <button id="sign-up" class="btns">Sign Up</button>
+                        <button id="show-login" class="btns">Become a Seller</button>
                     </div>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="imageB">
-        <img src="img/8dc956a1d83109121ffe7b29299360b5.jpg" alt="image"
-            style="height: 250px; width:350px; border-radius: 10px;">
-    </div>
-    <h2>Description</h2>
-    <div class="des">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="border-right: 2px solid #1ba965;">
+                    <h2>{{ $auction->title }}</h2>
+                    <img src="{{ $auction->image }}" alt="image"
+                        style="height: 250px; width:350px; border-radius: 10px;">
+                    <h2>Description</h2>
+                    <p>{{ $auction->description }}</p>
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="btn ptn-primary minus" style="background-color: #1ba965">-</button>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" value="{{ $auction->starting_price }}Birr" class="form-control"
+                                style="color:black;">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn ptn-primary plus" style="background-color: #1ba965">+</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="submit" class="mt-3 form-control"
+                                style="border-radius: 10px; background-color:#1ba965; padding: 10px; border-color: transparent;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-left: 2rem">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            Bidder Name
+                        </div>
+                        <div class="col-6">
+                            Bid Value
+                        </div>
+                    </div>
+                    <div class="row"
+                        style="
+                    padding: 1rem;
+                    background-color: transparent;
+                    border: 1px solid #1ba965;
+                    border-radius: 10px;
+                ">
+                        @if (count($auction->bids))
+                            {{ $auction->bids }}
+                            @foreach ($auction->bids as $bid)
+                                <div class="col-6">
+                                    {{ $bid->user->id }}
+                                </div>
+                                <div class="col-6 text-right">
+                                    {{ $bid->amount }}ETB
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="col-6">
+                                Ismael
+                            </div>
+                            <div class="col-6 text-right">
+                                8100ETB
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const textInput = document.querySelector('input[type="text"]');
+                    const plusButton = document.querySelector('.plus');
+                    const minusButton = document.querySelector('.minus');
 
-        <p>lourem loefkgksfhggksdj fgkjsdf dsfjgksdf dskfjgd fgkjsdfg sdfkjgsndf kdjfg
-        </p>
-    </div>
-    <div class="line">
-        <p>Bidders Name</p>
-        <p>Price</p>s
-    </div>
-    <div class="bid"></div>
-    <div class="bid2"></div>
-    <div class="bid3"></div>
-    <div class="bid4"></div>
-    <div class="bid5"></div>
-    <div class="bid6"></div>
-    <div class="bid7"></div>
-    <div class="bid8"></div>
+                    plusButton.addEventListener('click', function() {
+                        // Parse the current value, remove non-numeric characters, and convert to a number
+                        let value = parseFloat(textInput.value.replace(/[^\d.]/g, ''));
+                        if (!isNaN(value)) {
+                            // Increment the value by 100 and update the text input
+                            value += 100;
+                            textInput.value = value.toFixed(2) + ' ETB';
+                        }
+                    });
 
+                    minusButton.addEventListener('click', function() {
+                        // Parse the current value, remove non-numeric characters, and convert to a number
+                        let value = parseFloat(textInput.value.replace(/[^\d.]/g, ''));
+                        if (!isNaN(value)) {
+                            if (!value < {{ $auction->starting_price }}) {
+                                // Decrement the value by 100 and update the text input
+                                value -= 100;
+                                textInput.value = value.toFixed(2) + ' ETB';
+                            }
+                        }
+                    });
+                });
+            </script>
+        </div>
     </div>
-
-    <div class="bidA">
-        <button class="bid-button mines" style="position: absolute; top: 60%; left: 7%; ">-</button>
-        <button class="bid-button plues" style="position: absolute; top: 60%; left: 15%; ">+</button>
-        <input type="text" value="8000 Birr" style="position: absolute; top: 60%; left: 10%; ">
-        <input type="submit">
     </div>
 
 

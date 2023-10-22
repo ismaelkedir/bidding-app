@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('auction', function (Blueprint $table) {
-            $table->id();
+        Schema::create('auctions', function (Blueprint $table) {
+            $table->id()->autoIncrement();
             $table->string('title', 225);
             $table->string('image', 225);
             $table->text('description');
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('auction');
+        Schema::dropIfExists('auctions');
     }
 };

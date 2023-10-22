@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('bid', function (Blueprint $table) {
-            $table->id();
+        Schema::create('bids', function (Blueprint $table) {
+            $table->id()->autoIncrement();
             $table->integer('amount');
             $table->integer('auction_id');
             $table->integer('user_id');
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('bid');
+        Schema::dropIfExists('bids');
     }
 };

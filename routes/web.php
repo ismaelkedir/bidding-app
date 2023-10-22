@@ -26,7 +26,7 @@ Route::get('/', function () {
 // Route::get('/login', 'Auth\LoginController@showLoginForm');
 // Route::get('/signup', 'Auth\RegisterController@showRegistrationForm');
 Route::get('/auctions', [AuctionController::class, 'index']);
-Route::get('/auctions/{auctionId}', [AuctionController::class, 'show']);
+Route::get('/auctions/{auctionId}', [AuctionController::class, 'show'])->name('auctions.show');
 Route::get('/auctions/{auctionId}/bid', [BidController::class, 'bid']);
 Route::get('/auctions/{auctionId}/history', [AuctionController::class, 'history']);
 Route::get('/profile', [ProfileController::class, 'index']);

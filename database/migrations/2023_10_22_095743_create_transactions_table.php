@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
-            $table->id();
-            $table->string('method', 225);
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->string('payment_method', 225);
             $table->integer('amount');
             $table->integer('auction_id');
             $table->integer('seller_id');
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('transactions');
     }
 };
